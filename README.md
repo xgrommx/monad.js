@@ -38,7 +38,7 @@ Monad.js creates a new global object called `Monad`.  To use that object, you'll
 var monad = new Monad();
 ```
 
-If you don't know about monads, it may not be super clear why you'd need to do this.  If you _do_ know about monads, it's because the `Monad` constructor actually takes two optional arguments allowing you to define your own custom `bind` and `return` functions that will be used when calling methods on this monad.  These arguments are optional so if you don't pass them in, the monad will use some defaults.  This way, if you don't know about monads, you won't have to worry about writing `bind` and `return` functions.
+If you don't know about monads, it may not be super clear why you'd need to do this.  If you _do_ know about monads, it's because the `Monad` constructor actually takes two optional arguments allowing you to define your own custom `return` and `bind` functions that will be used when calling methods on this monad.  These arguments are optional so if you don't pass them in, the monad will use some defaults.  This way, if you don't know about monads, you won't have to worry about writing `return` and `bind` functions.
 
 Now lets define some functions to use in our monadic chain:
 
@@ -104,6 +104,8 @@ function bind(wrappedVal, fn) {
 
 /*
  * And here are a few functions to include in the monad.
+ * Notice that each one calls wrap() when it returns a value
+ * so the wrap function gets called at ever step.
  */
 function monad_1 () { ... return wrap(someValue)}
 function monad_2 () { ... return wrap(someValue)}
@@ -159,7 +161,7 @@ wrap((function (x) {
 }()));
 ```
 
-In either case, `x` gets wrapped before anything else touches it.  Monad.js does the latter under the hood for two reasons.  1) Monad.js is a monad generator, it's supposed to take raw input and generate something cool.  2) This way you don't have to worry about really understanding the subtleties of monads while you use Monad.js.  Instead, you can just pass any function you want into the monad generator and have it work.
+In either case, `x` gets wrapped before anything else touches it.  Monad.js does the latter under the hood for two reasons.  1) Monad.js is a monad generator. It's supposed to take raw input and generate something cool.  2) This way you don't have to worry about really understanding the subtleties of monads while you use Monad.js.  Instead, you can just pass any function you want into the monad generator and have it work.
 
 
 
