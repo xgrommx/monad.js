@@ -105,7 +105,7 @@ function bind(wrappedVal, fn) {
 /*
  * And here are a few functions to include in the monad.
  * Notice that each one calls wrap() when it returns a value
- * so the wrap function gets called at ever step.
+ * so the wrap function gets called at every step.
  */
 function monad_1 () { ... return wrap(someValue)}
 function monad_2 () { ... return wrap(someValue)}
